@@ -4,7 +4,7 @@ public class Frame {
 
     private Integer roll1;
     private Integer roll2;
-    private Integer roll3; // Only for the 10th frame
+    private Integer roll3;
     private boolean isStrike;
     private boolean isSpare;
 
@@ -54,13 +54,5 @@ public class Frame {
 
     public void setRoll2(Integer roll2) {
         this.roll2 = roll2;
-    }
-
-    public void setRoll3(Integer roll3) {
-        this.roll3 = roll3;
-    }
-
-    public int getScore() {
-        return score;
     }
 }
