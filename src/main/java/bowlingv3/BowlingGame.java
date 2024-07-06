@@ -9,7 +9,7 @@ import java.util.List;
 public class BowlingGame {
 
     private static final Logger logger = LoggerFactory.getLogger(BowlingGame.class);
-    
+
     private static final int MAX_FRAMES = 10;
 
     protected static Integer printRollsAndScores(List<Frame> frames) {
