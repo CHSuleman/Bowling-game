@@ -1,0 +1,5 @@
+
+v
+java:S1450	"TRemove the "score" field and declare it as a local variable in the relevant methods.(µ¼æÿÿÿÿÿ8ïÙÊˆ2
+K
+java:S1068	")Remove this unused "score" private field.(µ¼æÿÿÿÿÿ8¢ïÙÊˆ2

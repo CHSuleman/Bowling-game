@@ -1,0 +1,6 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯Œ²÷üÿÿÿÿ8ƒ¹£Ëˆ2
+œ
+java:S1450	"TRemove the "score" field and declare it as a local variable in the relevant methods.(µŽ¼æÿÿÿÿÿ8žïÙÊˆ2J$161d58b1-e3ab-4f61-86c3-8a47eb5f4048
+q
+java:S1068	")Remove this unused "score" private field.(µŽ¼æÿÿÿÿÿ8¢ïÙÊˆ2J$8641fab9-9397-40b5-99af-22c4fd8d5107

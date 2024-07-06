@@ -1,0 +1,15 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯Œ²÷üÿÿÿÿ8³©£Ëˆ2
+h
+java:S1192""FDefine a constant instead of duplicating this literal " pins" 3 times.(š¯ŞÀùÿÿÿÿ8¶©£Ëˆ2
+q
+java:S1192""ODefine a constant instead of duplicating this literal "Roll in frame " 3 times.(š¯ŞÀùÿÿÿÿ8¶©£Ëˆ2
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(µáÎüÿÿÿÿ8º©£Ëˆ2
+L	java:S106""+Replace this use of System.out by a logger.(š¯ŞÀùÿÿÿÿ8½©£Ëˆ2
+r	java:S106#"+Replace this use of System.out by a logger.(Å§±úÿÿÿÿ8ô¬ŸËˆ2J$f048fa01-1c93-4322-a7b1-4c2c0737297e
+m	java:S106%"+Replace this use of System.out by a logger.(àÕ¨8ô¬ŸËˆ2J$249b3b2b-59f1-4b11-a8bc-89b6b30f88fd
+L	java:S106'"+Replace this use of System.out by a logger.(µáÎüÿÿÿÿ8¾©£Ëˆ2
+f
+java:S3358'"DExtract this nested ternary operation into an independent statement.(µáÎüÿÿÿÿ8¾©£Ëˆ2
+L	java:S106*"+Replace this use of System.out by a logger.(µáÎüÿÿÿÿ8¾©£Ëˆ2

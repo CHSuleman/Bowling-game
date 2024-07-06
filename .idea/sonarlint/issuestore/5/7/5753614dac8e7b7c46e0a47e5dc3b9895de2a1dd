@@ -1,0 +1,14 @@
+
+
+java:S1192 "FDefine a constant instead of duplicating this literal " pins" 3 times.(•¡Ÿ©ùÿÿÿÿ8í¬ŸËˆ2J$f63212a9-57d8-4b2c-98b7-43511b0fb459
+—
+java:S1192 "ODefine a constant instead of duplicating this literal "Roll in frame " 3 times.(•¡Ÿ©ùÿÿÿÿ8í¬ŸËˆ2J$72d3fb7f-a15c-420c-801f-32bc745a00b4
+š
+java:S3776	"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(á–Ùûÿÿÿÿ8ğ¬ŸËˆ2J$e67b9de7-6284-475b-8613-2e8d4559f6f5
+r	java:S106 "+Replace this use of System.out by a logger.(•¡Ÿ©ùÿÿÿÿ8ó¬ŸËˆ2J$5be25fbd-9ca0-4f7e-a1f2-a50083c01d56
+m	java:S106!"+Replace this use of System.out by a logger.(š™ÅÓ8ó¬ŸËˆ2J$dfdcee29-4504-40a3-90aa-d722b70b90f1
+r	java:S106#"+Replace this use of System.out by a logger.(Å§±úÿÿÿÿ8ô¬ŸËˆ2J$12c970a9-ff05-4ee3-bb4d-e3c239641eec
+m	java:S106%"+Replace this use of System.out by a logger.(àÕ¨8ô¬ŸËˆ2J$9ef6536a-3895-42d7-883e-82a6b24ca796
+‡
+java:S3358%"DExtract this nested ternary operation into an independent statement.(àÕ¨8ô¬ŸËˆ2J$de3ce397-e93a-42cc-803d-fb3b284ccdcb
+r	java:S106("+Replace this use of System.out by a logger.(ÿüìÈşÿÿÿÿ8õ¬ŸËˆ2J$77ea63dd-a7bc-442b-a903-45f6a4849279
