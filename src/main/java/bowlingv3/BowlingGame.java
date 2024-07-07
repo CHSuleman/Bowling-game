@@ -27,7 +27,7 @@ public class BowlingGame {
     private static int calculateFrameScore(Frame frame, int frameIndex, List<Frame> frames) {
         int frameScore = calculateBasicFrameScore(frame);
 
-        if (frameIndex == frames.size() - 1 && frame.getRoll3() != null && !isGutterBall(frame.getRoll3())) {
+        if (frameIndex == frames.size() - 1 && frame.getRoll3() != null) {
                 frameScore += frame.getRoll3();
             }
         applyStrikeOrSpareFlags(frame, frameScore);
@@ -37,23 +37,11 @@ public class BowlingGame {
     }
 
     private static int calculateBasicFrameScore(Frame frame) {
-        if (frame.getRoll2() != null && !isGutterBall(frame.getRoll1()) && !isGutterBall(frame.getRoll2())) {
+        if (frame.getRoll2() != null) {
             return frame.getRoll1() + frame.getRoll2();
-        } else if (!isGutterBall(frame.getRoll1())) {
-            frame.setRoll2(null);
-            return frame.getRoll1();
-        } else if (!isGutterBall(frame.getRoll2())) {
-            frame.setRoll1(null);
-            return frame.getRoll2();
         } else {
-            frame.setRoll1(null);
-            frame.setRoll2(null);
-            return 0;
+            return frame.getRoll1();
         }
-    }
-
-    private static boolean isGutterBall(Integer value) {
-        return value != null && value == -1;
     }
 
     private static void applyStrikeOrSpareFlags(Frame frame, int frameScore) {
@@ -83,14 +71,13 @@ public class BowlingGame {
         }
 
         Frame nextFrame = frames.get(frameIndex + 1);
-        int bonus = nextFrame.getRoll1() != null && !isGutterBall(nextFrame.getRoll1()) ? nextFrame.getRoll1() : 0;
+        int bonus = nextFrame.getRoll1() != null ? nextFrame.getRoll1() : 0;
         if (bonus == 10 && frameIndex < MAX_FRAMES - 2) {
             Frame nextNextFrame = frames.get(frameIndex + 2);
-            bonus += nextNextFrame.getRoll1() != null && !isGutterBall(nextFrame.getRoll1()) ? nextNextFrame.getRoll1() : 0;
+            bonus += nextNextFrame.getRoll1() != null ? nextNextFrame.getRoll1() : 0;
         } else {
-            bonus += nextFrame.getRoll2() != null && nextFrame.getRoll2() != -1 ? nextFrame.getRoll2() : 0;
+            bonus += nextFrame.getRoll2() != null ? nextFrame.getRoll2() : 0;
         }
-
         return bonus;
     }
 
@@ -100,7 +87,7 @@ public class BowlingGame {
         }
 
         Frame nextFrame = frames.get(frameIndex + 1);
-        return nextFrame.getRoll1() != null && nextFrame.getRoll1() != -1 ? nextFrame.getRoll1() : 0;
+        return nextFrame.getRoll1() != null ? nextFrame.getRoll1() : 0;
     }
 
     private static void logFrameDetails(Frame frame, int frameIndex, int totalScore, boolean isLastFrame) {
