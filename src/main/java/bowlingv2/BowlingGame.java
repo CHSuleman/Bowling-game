@@ -29,7 +29,7 @@ public class BowlingGame {
 
         if (frameIndex == frames.size() - 1 && frame.getRoll3() != null) {
                 frameScore += frame.getRoll3();
-            }
+        }
         applyStrikeOrSpareFlags(frame, frameScore);
         frameScore += applyBonuses(frame, frameIndex, frames);
 
@@ -91,12 +91,12 @@ public class BowlingGame {
     }
 
     private static void logFrameDetails(Frame frame, int frameIndex, int totalScore, boolean isLastFrame) {
-        logger.info("Roll in frame {}: {} pins", (frameIndex + 1), frame.getRoll1() != null ? frame.getRoll1() : "Gutter");
+        logger.info("Roll in frame {}: {} pins", (frameIndex + 1), frame.getRoll1());
         if (frame.getRoll2() != null) {
-            logger.info("Roll in frame {}: {} pins", (frameIndex + 1), frame.getRoll2() != null ? frame.getRoll2() : "Gutter");
+            logger.info("Roll in frame {}: {} pins", (frameIndex + 1), frame.getRoll2());
         }
         if (isLastFrame) {
-            logger.info("Roll in frame {}: {} pins", (frameIndex + 2), frame.getRoll3() != null ? frame.getRoll3() : "0");
+            logger.info("Roll in frame {}: {} pins", (frameIndex + 2), frame.getRoll3());
         }
         logger.info("Frame {}: total score: {}", (frameIndex + 1), totalScore);
     }

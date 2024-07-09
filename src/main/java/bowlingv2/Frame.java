@@ -47,12 +47,4 @@ public class Frame {
     public void setSpare(boolean spare) {
         isSpare = spare;
     }
-
-    public void setRoll1(Integer roll1) {
-        this.roll1 = roll1;
-    }
-
-    public void setRoll2(Integer roll2) {
-        this.roll2 = roll2;
-    }
 }
