@@ -1,98 +1,96 @@
 package bowling;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class BowlingGame {
-    private static final int MAX_FRAMES = 11;
+    private static final Logger logger = LoggerFactory.getLogger(BowlingGame.class);
+    private static final int MAX_FRAMES = 10;
 
-    private final Frame[] frames = new Frame[MAX_FRAMES];
-    private int currentFrame = 1;
-    private int currentRollInFrame = 0;
-
-    public BowlingGame() {
-        for (int i = 1; i < MAX_FRAMES; i++) {
-            frames[i] = new Frame();
-        }
-        System.out.println(frames.length);
-    }
-
-    public void roll(int pins) {
-        if (currentFrame == MAX_FRAMES) {
-            return;
-        }
-        System.out.println("Roll in frame " + (currentFrame) + ": " + pins + " pins");
-        Frame frame = frames[currentFrame];
-
-        if (currentRollInFrame == 0) {
-            frame.setFirstRoll(pins);
-            currentRollInFrame++;
-            if (pins == 10) {
-                currentFrame++;
-                currentRollInFrame = 0;
-            }
-        } else if (currentRollInFrame == 1) {
-            frame.setSecondRoll(pins);
-            currentRollInFrame++;
-            if (currentFrame < MAX_FRAMES - 1) {
-                currentFrame++;
-                currentRollInFrame = 0;
-            }
-        } else if (currentRollInFrame == 2) {
-            frame.setThirdRoll(pins);
-        }
-    }
-
-    public int score() {
+    public static Integer printRollsAndScores(List<Frame> frames) {
         int totalScore = 0;
 
-        for (int frameIndex = 1; frameIndex < MAX_FRAMES; frameIndex++) {
-            Frame frame = frames[frameIndex];
-            int frameScore = frame.getFirstRoll() + frame.getSecondRoll();
-
-            if (frame.isStrike()) {
-                frameScore += strikeBonus(frameIndex);
-            } else if (frame.isSpare()) {
-                frameScore += spareBonus(frameIndex);
-            }
-
-            if (frameIndex == MAX_FRAMES - 1) {
-                frameScore += frame.getThirdRoll();
-            }
-
-            frame.setScore(frameScore);
+        for (int frameIndex = 0; frameIndex < frames.size(); frameIndex++) {
+            Frame frame = frames.get(frameIndex);
+            int frameScore = calculateFrameScore(frame, frameIndex, frames);
             totalScore += frameScore;
-            System.out.println("Frame " + (frameIndex) + ": " + (frame.isStrike() ? "Strike" : frame.isSpare() ? "Spare" : "Open frame") + ", total score: " + totalScore);
+            logFrameDetails(frame, frameIndex, totalScore, frameIndex == frames.size() - 1);
         }
-
         return totalScore;
     }
 
-    private int strikeBonus(int frameIndex) {
+    private static int calculateFrameScore(Frame frame, int frameIndex, List<Frame> frames) {
+        int frameScore;
+        if (frame.getRoll1() != 10 && frameIndex != frames.size() - 1) {
+            frameScore = frame.getRoll1() + frame.getRoll2();
+        } else if (frameIndex == frames.size() - 1) {
+            frameScore = frame.getRoll1() + frame.getRoll2() + frame.getRoll3();
+        } else {
+            frameScore = frame.getRoll1();
+        }
+
+        if (frame.isStrike()) {
+            frameScore += strikeBonus(frameIndex, frames);
+        } else if (frame.isSpare()) {
+            frameScore += spareBonus(frameIndex, frames);
+        }
+
+        return frameScore;
+    }
+
+    private static void logFrameDetails(Frame frame, int frameIndex, int totalScore, boolean isLastFrame) {
+        logger.info("Roll in frame {}: {} pins", (frameIndex + 1), frame.getRoll1());
+        if (frame.getRoll2() != null) {
+            logger.info("Roll in frame {}: {} pins", (frameIndex + 1), frame.getRoll2());
+        }
+        if (isLastFrame) {
+            logger.info("Roll in frame {}: {} pins", (frameIndex + 2), (frame.getRoll3() != null ? frame.getRoll3() : "0"));
+        }
+        logger.info("Frame {}: total score: {}", (frameIndex + 1),  totalScore);
+    }
+
+    private static int strikeBonus(int frameIndex, List<Frame> frames) {
         if (frameIndex >= MAX_FRAMES - 1) {
             return 0;
         }
-        int bonus = frames[frameIndex + 1].getFirstRoll();
-        if (frames[frameIndex + 1].isStrike() && frameIndex < MAX_FRAMES - 2) {
-            bonus += frames[frameIndex + 2].getFirstRoll();
+
+        Frame nextFrame = frames.get(frameIndex + 1);
+        int bonus = nextFrame.getRoll1();
+        if (nextFrame.isStrike() && frameIndex < MAX_FRAMES - 2) {
+            Frame nextNextFrame = frames.get(frameIndex + 2);
+            bonus += nextNextFrame.getRoll1();
         } else {
-            bonus += frames[frameIndex + 1].getSecondRoll();
+            bonus += nextFrame.getRoll2() != null ? nextFrame.getRoll2() : 0;
         }
+
         return bonus;
     }
 
-    private int spareBonus(int frameIndex) {
+    private static int spareBonus(int frameIndex, List<Frame> frames) {
         if (frameIndex >= MAX_FRAMES - 1) {
             return 0;
         }
-        return frames[frameIndex + 1].getFirstRoll();
+
+        Frame nextFrame = frames.get(frameIndex + 1);
+        return nextFrame.getRoll1();
     }
 
     public static void main(String[] args) {
-        BowlingGame game = new BowlingGame();
+        List<Frame> frames = new ArrayList<>();
+        frames.add(new Frame(1, 4, false, false));
+        frames.add(new Frame(4, 5, false, false));
+        frames.add(new Frame(6, 4, false, true));
+        frames.add(new Frame(5, 5, false, true));
+        frames.add(new Frame(10, null, true, false));
+        frames.add(new Frame(0, 1, false, false));
+        frames.add(new Frame(7, 3, false, true));
+        frames.add(new Frame(6, 4, false, true));
+        frames.add(new Frame(10, null, true, false));
+        frames.add(new Frame(2, 8, 6, false, false));
 
-        int[] sampleRolls = {1, 4, 4, 5, 6, 4, 5, 5, 10, 0, 1, 7, 3, 6, 4, 10, 2, 8, 6};
-
-        for (int roll : sampleRolls) {
-            game.roll(roll);
-        }
-        System.out.println("Final Score: " + game.score());
+        logger.info("Final Score: {}", printRollsAndScores(frames));
     }
 }

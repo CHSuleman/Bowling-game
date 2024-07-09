@@ -1,59 +1,46 @@
 package bowling;
 
 public class Frame {
-    private Integer firstRoll;
-    private Integer secondRoll;
-    private Integer thirdRoll; // Used only in the 10th frame if needed
+    Integer roll1;
+    Integer roll2;
+    private Integer roll3; // Only for the 10th frame
     private boolean isStrike;
     private boolean isSpare;
+
+    public int getScore() {
+        return score;
+    }
+
     private int score;
 
-    public Frame() {
-        this.firstRoll = 0;
-        this.secondRoll = 0;
-        this.thirdRoll = 0;
-        this.isStrike = false;
-        this.isSpare = false;
-        this.score = 0;
-    }
-
-    public Frame(Integer firstRoll, Integer secondRoll, Integer thirdRoll, boolean isStrike, boolean isSpare) {
-        this.firstRoll = firstRoll;
-        this.secondRoll = secondRoll;
-        this.thirdRoll = thirdRoll;
+    // Constructor for frames 1-9
+    public Frame(Integer roll1, Integer roll2, boolean isStrike, boolean isSpare) {
+        this.roll1 = roll1;
+        this.roll2 = roll2;
         this.isStrike = isStrike;
         this.isSpare = isSpare;
-        this.score = 0;
+        this.roll3 = null; // Not applicable for frames 1-9
     }
 
-    public int getFirstRoll() {
-        return firstRoll;
+    // Constructor for the 10th frame
+    public Frame(Integer roll1, Integer roll2, Integer roll3, boolean isStrike, boolean isSpare) {
+        this.roll1 = roll1;
+        this.roll2 = roll2;
+        this.roll3 = roll3;
+        this.isStrike = isStrike;
+        this.isSpare = isSpare;
     }
 
-    public void setFirstRoll(int firstRoll) {
-        this.firstRoll = firstRoll;
-        if (firstRoll == 10) {
-            this.isStrike = true;
-        }
+    public Integer getRoll1() {
+        return roll1;
     }
 
-    public int getSecondRoll() {
-        return secondRoll;
+    public Integer getRoll2() {
+        return roll2;
     }
 
-    public void setSecondRoll(int secondRoll) {
-        this.secondRoll = secondRoll;
-        if (firstRoll + secondRoll == 10 && !isStrike) {
-            this.isSpare = true;
-        }
-    }
-
-    public int getThirdRoll() {
-        return thirdRoll;
-    }
-
-    public void setThirdRoll(int thirdRoll) {
-        this.thirdRoll = thirdRoll;
+    public Integer getRoll3() {
+        return roll3;
     }
 
     public boolean isStrike() {
@@ -62,10 +49,6 @@ public class Frame {
 
     public boolean isSpare() {
         return isSpare;
-    }
-
-    public int getScore() {
-        return score;
     }
 
     public void setScore(int score) {

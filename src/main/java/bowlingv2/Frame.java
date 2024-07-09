@@ -1,34 +1,23 @@
 package bowlingv2;
 
 public class Frame {
-    Integer roll1;
-    Integer roll2;
-    private Integer roll3; // Only for the 10th frame
+
+    private Integer roll1;
+    private Integer roll2;
+    private Integer roll3;
     private boolean isStrike;
     private boolean isSpare;
 
-    public int getScore() {
-        return score;
-    }
-
-    private int score;
-
-    // Constructor for frames 1-9
-    public Frame(Integer roll1, Integer roll2, boolean isStrike, boolean isSpare) {
+    public Frame(Integer roll1, Integer roll2) {
         this.roll1 = roll1;
         this.roll2 = roll2;
-        this.isStrike = isStrike;
-        this.isSpare = isSpare;
-        this.roll3 = null; // Not applicable for frames 1-9
+        this.roll3 = null;
     }
 
-    // Constructor for the 10th frame
-    public Frame(Integer roll1, Integer roll2, Integer roll3, boolean isStrike, boolean isSpare) {
+    public Frame(Integer roll1, Integer roll2, Integer roll3) {
         this.roll1 = roll1;
         this.roll2 = roll2;
         this.roll3 = roll3;
-        this.isStrike = isStrike;
-        this.isSpare = isSpare;
     }
 
     public Integer getRoll1() {
@@ -51,7 +40,19 @@ public class Frame {
         return isSpare;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setStrike(boolean strike) {
+        isStrike = strike;
+    }
+
+    public void setSpare(boolean spare) {
+        isSpare = spare;
+    }
+
+    public void setRoll1(Integer roll1) {
+        this.roll1 = roll1;
+    }
+
+    public void setRoll2(Integer roll2) {
+        this.roll2 = roll2;
     }
 }
